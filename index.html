@@ -8,10 +8,10 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --navy:#0D1B2A; --steel:#1F4E79; --sky:#2E86C1; --sky-light:#5BA4D4;
-  --sand:#F5F0E8; --chalk:#FAFAF8; --ink:#111827;
-  --muted:#6B7280; --rule:#D1D5DB; --accent:#C8A96E; --white:#FFFFFF;
-  --section-alt:#F0EDE6;
+  --navy:#0B1F3A; --steel:#154878; --sky:#1A6FAF; --sky-light:#3D8FCC;
+  --sand:#FBF7F1; --chalk:#F6F2EB; --ink:#1A1A2E;
+  --muted:#64748B; --rule:#DDD5C8; --accent:#B8955A; --white:#FFFFFF;
+  --section-alt:#EDE7DC;
 }
 html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;background:var(--chalk);color:var(--ink);line-height:1.6;overflow-x:hidden}
@@ -50,7 +50,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,27,42,0.9
 .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
 .dropdown{position:relative;display:inline-block;margin-left:0.75rem}
 .dropdown-menu{display:none;position:absolute;top:110%;left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.12);min-width:285px;z-index:200;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
-.dropdown:hover .dropdown-menu{display:block}
+.dropdown-menu.open{display:block}
 .dropdown-menu a{display:block;padding:0.75rem 1.1rem;color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.78rem;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.15s,background 0.15s}
 .dropdown-menu a:hover{color:var(--accent);background:rgba(255,255,255,0.03)}
 .dropdown-menu a:last-child{border:none}
@@ -264,14 +264,15 @@ footer{background:rgba(0,0,0,0.4);border-top:1px solid rgba(255,255,255,0.06);te
       </div>
       <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.75rem">
         <a href="#contact" class="btn-primary">✉ Get in Touch</a>
-        <div class="dropdown">
-          <button class="btn-ghost">View Work ▾</button>
-          <div class="dropdown-menu">
+        <div class="dropdown" id="workDropdown">
+          <button class="btn-ghost" onclick="toggleDropdown()">View Work ▾</button>
+          <div class="dropdown-menu" id="dropdownMenu">
             <span class="dropdown-lbl">JFK Redevelopment — New York</span>
-            <a href="https://www.portauthoritybuilds.com/redevelopment/us/en/jfk/planned-projects/terminal-1.html" target="_blank">🛫 JFK New Terminal One (T1)</a>
-            <a href="https://www.portauthoritybuilds.com/redevelopment/us/en/jfk/planned-projects/terminal-6.html" target="_blank">🛬 JFK Terminal 6 (T6)</a>
+            <a href="https://www.anewjfk.com/projects/the-new-terminal-one/" target="_blank">🛫 JFK New Terminal One (T1) — Official Site</a>
+            <a href="https://www.portauthoritybuilds.com/redevelopment/us/en/jfk/planned-projects/terminal-6.html" target="_blank">🛬 JFK Terminal 6 (T6) — Official Site</a>
             <span class="dropdown-lbl">High-Speed Rail — India</span>
-            <a href="https://blogs.lntecc.com/mumbai-ahmedabad-high-speed-railway-corridor-mahsr-the-first-bullet-train-of-india/" target="_blank">🚄 MAHSR C6 — L&T Construction</a>
+            <a href="https://nhsrcl.in" target="_blank">🚄 MAHSR — National High Speed Rail Corp.</a>
+            <a href="https://blogs.lntecc.com/mumbai-ahmedabad-high-speed-railway-corridor-mahsr-the-first-bullet-train-of-india/" target="_blank">🔩 MAHSR C6 — L&T Construction</a>
           </div>
         </div>
       </div>
@@ -282,8 +283,8 @@ footer{background:rgba(0,0,0,0.4);border-top:1px solid rgba(255,255,255,0.06);te
     </div>
   </div>
   <div class="stats-row reveal">
-    <div class="stat-cell"><div class="stat-num">$19B</div><div class="stat-lbl">JFK Redevelopment</div></div>
-    <div class="stat-cell"><div class="stat-num">$870M</div><div class="stat-lbl">MAHSR Rail India</div></div>
+    <a class="stat-cell" href="https://www.anewjfk.com" target="_blank" style="text-decoration:none;display:block;cursor:pointer"><div class="stat-num">$19B</div><div class="stat-lbl">JFK Redevelopment ↗</div></a>
+    <a class="stat-cell" href="https://nhsrcl.in" target="_blank" style="text-decoration:none;display:block;cursor:pointer"><div class="stat-num">$870M</div><div class="stat-lbl">MAHSR Rail India ↗</div></a>
     <div class="stat-cell"><div class="stat-num">3+</div><div class="stat-lbl">Years Experience</div></div>
     <div class="stat-cell"><div class="stat-num">4+</div><div class="stat-lbl">RFIs Resolved / Week</div></div>
   </div>
@@ -563,6 +564,18 @@ footer{background:rgba(0,0,0,0.4);border-top:1px solid rgba(255,255,255,0.06);te
   }
   document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLb();});
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();});
+
+  // Dropdown toggle
+  function toggleDropdown() {
+    const menu = document.getElementById('dropdownMenu');
+    menu.classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    const dd = document.getElementById('workDropdown');
+    if (dd && !dd.contains(e.target)) {
+      document.getElementById('dropdownMenu').classList.remove('open');
+    }
+  });
 </script>
 </body>
 </html>
